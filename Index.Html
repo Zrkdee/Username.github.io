@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ClockTime</title>
+<style>
+:root {
+  --bg: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+  --card: rgba(255,255,255,0.1);
+  --hover: rgba(255,255,255,0.25);
+  --radius: 16px;
+  --highlight: #ffd369;
+}
+
+body {
+  margin:0;
+  font-family:"Segoe UI",sans-serif;
+  background: var(--bg);
+  color:#fff;
+  overflow-x:hidden;
+}
+
+header {
+  position: sticky;
+  top:0;
+  z-index:100;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(10px);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 25px;
+  animation:slideDown 1s ease;
+}
+
+header h1 {
+  margin:0;
+  font-size:1.8rem;
+  animation:fadeInText 1.5s ease;
+}
+
+nav a {
+  color:#fff;
+  text-decoration:none;
+  margin-left:15px;
+  font-weight:bold;
+  transition:0.3s;
+  position: relative;
+}
+nav a:hover {
+  color:var(--highlight);
+}
+nav a::after {
+  content:"";
+  display:block;
+  height:2px;
+  background:var(--highlight);
+  transition:width 0.3s;
+  width:0;
+}
+nav a:hover::after { width:100%; }
+
+.container {
+  max-width:1100px;
+  width:90%;
+  margin:50px auto;
+  text-align:center;
+  position:relative;
+  z-index:2;
+  animation:fadeInUp 1s ease;
+}
+
+h2 {
+  margin-bottom:30px;
+  animation:fadeInUp 1s ease;
+}
+
+.links, .grid {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:20px;
+}
+
+.card {
+  background:var(--card);
+  padding:15px;
+  border-radius:var(--radius);
+  width:200px;
+  transition:0.5s;
+  cursor:pointer;
+  box-shadow:0 8px 20px rgba(0,0,0,0.3);
+  position:relative;
+  animation:zoomIn 0.8s ease;
+}
+.card img {
+  width:100%;
+  border-radius:var(--radius);
+  margin-bottom:10px;
+  transition:0.5s;
+}
+.card:hover {
+  transform:translateY(-8px) scale(1.08) rotate(-1deg);
+  background:var(--hover);
+  box-shadow:0 15px 25px rgba(0,0,0,0.4);
+}
+.card p {
+  font-weight:bold;
+  font-size:1rem;
+  transition:0.3s;
+}
+.card:hover p { color:var(--highlight); }
+
+/* Плавающие декоративные круги с разной скоростью */
+.decor {
+  position:absolute;
+  border-radius:50%;
+  opacity:0.2;
+}
+.d1 {width:150px;height:150px;background:#ffd369; top:10%; left:5%; animation:float1 12s infinite ease-in-out;}
+.d2 {width:100px;height:100px;background:#00ffcc; top:60%; left:15%; animation:float2 15s infinite ease-in-out;}
+.d3 {width:200px;height:200px;background:#ff6b6b; top:30%; left:70%; animation:float3 18s infinite ease-in-out;}
+
+/* Анимации плавающих кругов */
+@keyframes float1 {0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(-40px) rotate(20deg);}}
+@keyframes float2 {0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(-30px) rotate(-15deg);}}
+@keyframes float3 {0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(-50px) rotate(25deg);}}
+
+/* Появление элементов */
+@keyframes fadeInUp {from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeInText {from{opacity:0;}to{opacity:1;}}
+@keyframes slideDown {from{transform:translateY(-50px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+@keyframes zoomIn {from{opacity:0; transform:scale(0.8);}to{opacity:1; transform:scale(1);}}
+
+.sub-tabs {
+  display:flex;
+  gap:15px;
+  margin:15px 0;
+  justify-content:center;
+}
+.sub-tabs button {
+  padding:8px 14px;
+  border:none;
+  border-radius:var(--radius);
+  background:var(--card);
+  color:#fff;
+  cursor:pointer;
+  transition:0.3s;
+}
+.sub-tabs button:hover{background:var(--hover);}
+.hidden{display:none;}
+</style>
+</head>
+<body>
+
+<div class="decor d1"></div>
+<div class="decor d2"></div>
+<div class="decor d3"></div>
+
+<header>
+<h1>ClockTime</h1>
+<nav>
+<a href="#" onclick="showTab('home')">Главная</a>
+<a href="#" onclick="showTab('projects')">Проекты</a>
+<a href="file:///C:/Users/ASER/Desktop/My%20site/Wiki.Html">Поддержка</a>
+</nav>
+</header>
+
+<section id="home" class="container">
+<h2>Добро пожаловать!</h2>
+<div class="links">
+  <a href="https://discord.gg/YuRQuKBVxH" target="_blank" class="card">
+    <img src="https://img.icons8.com/color/96/discord-logo.png">
+    <p>Discord</p>
+  </a>
+  <a href="https://www.youtube.com/@Zrkdee_RobloxStudio-Playing" target="_blank" class="card">
+    <img src="https://img.icons8.com/color/96/youtube-play.png">
+    <p>YouTube</p>
+  </a>
+  <a href="https://www.roblox.com/users/1975710464/profile" target="_blank" class="card">
+    <img src="https://img.icons8.com/color/96/roblox.png">
+    <p>Roblox</p>
+  </a>
+</div>
+</section>
+
+<section id="projects" class="container hidden">
+<h2>Мои проекты</h2>
+<div class="sub-tabs">
+<button onclick="showSubTab('projects-main')">⬅ Назад</button>
+<button onclick="showSubTab('projects-sand')">SandPqqClock</button>
+</div>
+
+<div id="projects-main" class="sub-content">
+<div class="grid">
+  <a href="https://example.com/proj1" target="_blank" class="card">
+    <img src="https://via.placeholder.com/300x150"><p>Проект 1</p>
+  </a>
+  <a href="https://example.com/proj2" target="_blank" class="card">
+    <img src="https://via.placeholder.com/300x150"><p>Проект 2</p>
+  </a>
+  <a href="https://example.com/proj3" target="_blank" class="card">
+    <img src="https://via.placeholder.com/300x150"><p>Проект 3</p>
+  </a>
+</div>
+</div>
+
+<div id="projects-sand" class="sub-content hidden">
+<h3>SandPqqClock</h3>
+<div class="grid">
+  <a href="https://example.com/sand1" target="_blank" class="card">
+    <img src="https://via.placeholder.com/300x150"><p>Элемент 1</p>
+  </a>
+  <a href="https://example.com/sand2" target="_blank" class="card">
+    <img src="https://via.placeholder.com/300x150"><p>Элемент 2</p>
+  </a>
+</div>
+</div>
+</section>
+
+<script>
+function showTab(id){
+  document.querySelectorAll("section").forEach(sec=>sec.classList.add("hidden"));
+  document.getElementById(id).classList.remove("hidden");
+}
+function showSubTab(id){
+  document.querySelectorAll("#projects .sub-content").forEach(sec=>sec.classList.add("hidden"));
+  document.getElementById(id).classList.remove("hidden");
+}
+</script>
+</body>
+</html>
